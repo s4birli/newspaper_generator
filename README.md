@@ -1,1 +1,1 @@
-# newspaper_generator
+# Newspaper Generator!
