@@ -5,26 +5,21 @@
 # icerde var ama yayinlanmamis varsa hazirla sonra yayinla
 # update
 
-import data
-from request import get_request_xml
+from data.db_connection import db
+from img.remove import remove_images
+from bson import ObjectId
 
-def main():
-    db = data()
-    req = request()
-    active_domin_list = db.get_active_domain_list() # get_active_url_list; get active list from db - technella
-    for domain in active_domin_list: #loop for 
-        request_url = db.get_request_url()
-        for url in request_url:
-            links = get_request_xml(url)
-            for link in links:
-                if !isLinkPublished(link):
-                    publish(link)
-                else:
-                    if publish_control(link):
-                        publish(link)
-
-
-    print('main')
 
 if __name__ == "__main__":
-    main()
+    remove_images()
+    url_active_list = db().get_active_urls()
+    for url in url_active_list:
+        request_active_list = db().get_active_requests(ObjectId(url['_id']))
+        for req in request_active_list:
+            run(url, req)
+
+
+# f"{a} {b}"
+# test.title()
+# test.find('tst')
+# primitive types int, string, boolen
